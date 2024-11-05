@@ -1,28 +1,126 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ДЗ 1. Прості типи даних</title>
-</head>
-<body>
-    <?php $hometask_sting = 'Десять негритят пошли купаться в море'; ?>
-    <h1>ДЗ 1. Прості типи даних</h1>
-    <h2>Дії з числами</h2>
-    <p>Отримати залишок від ділення 7 на 3 = <?= 7 % 3 ?></p>
-    <p>Отримати цілу частину ділення 7 и 7 -> <?= intdiv(7 , 7) ?> , та 7 и 15 -> <?= intdiv(7 , 15) ?></p>
-    <p>Отримати корінь из 25 = <?= sqrt(25) ?></p>
-    <h2>Дії зі строкаи</h2>
-    <p>Отримати 4-е слово з фрази - Десять негритят пошли купаться в море -> <?= explode(' ' , $hometask_sting)[3] ?></p>
-    <p>Отримати 17-й символ із фрази - Десять негритят пошли купаться в море -> <?= mb_substr($hometask_sting , 16 , 1) ?></p>
-    <p>Десять негритят пошли купаться в море -> <?= mb_convert_case($hometask_sting , MB_CASE_TITLE) ?></p>
-    <p>Порахувати длину строки - Десять негритят пошли купаться в море -> <?= mb_strlen($hometask_sting) ?></p>
-    <h2>Дії з логіческими даними</h2>
-    <p>Чи вірно твердження true дорівнює 1 -> <?= true == 1 ? 'Так вiрне' : 'Нi' ?> (Так)</p>
-    <p>Чи вірно твердження false тождественно 0 <?= false === 0 ? 'Так вiрне' : 'Нi' ?> (Нi)</p>
-    <h2>(Для вирішення цих питань потрібно опанувати рівняння то тотожність у РНР)</h2>
-    <p>Яка строка більше three - три -> <?= mb_strlen('three') > mb_strlen('три') ? 'Строка three довша' : 'Строка три довша' ?></p>
-    <p>Яке число більше 125 умножить на 13 плюс 7 или 223 плюс 28 умножить 2 -> <?= (125 * 13 + 7) > (28*2+223) ? 'Першивай Вираз бiльше' : 'Другий вираз бiльше' ?></p>
-</body>
-</html>
+<?php      
+    $arr = [1, 2, 3, 7, 31, 4, 1, 8, 6];
+    
+    //посчитать длину массива
+    var_dump(count($arr));
+
+    //переместить первые 4 элемента массива в конец массива
+
+        // Variant 1
+        for($i = 0; $i < 4; $i++) {
+            array_push($arr , $arr[0]);
+            array_shift($arr); 
+        }
+
+        // Variant 2
+        $arr = [1, 2, 3, 7, 31, 4, 1, 8, 6];
+
+        for($i = 0; $i < 4; $i++) {
+            array_push($arr , $arr[$i]);
+        }
+
+        var_dump(array_slice($arr , 4));
+        
+        // Variant 3
+        $arr = [1, 2, 3, 7, 31, 4, 1, 8, 6];
+
+        var_dump(array_merge(array_slice($arr , 4) , array_slice($arr , 0 , 4)));
+
+    //получить сумму 4,5,6 элемента
+    $arr = [1, 2, 3, 7, 31, 4, 1, 8, 6];
+        // Variant 1
+    var_dump($arr[3] + $arr[4] + $arr[5]);
+        // Variant 2
+    var_dump(array_sum(array_splice($arr , 3 , 3)));
+
+    $firstArr = [ 
+        'one' => 1,
+        'two' => 2,
+        'three' => 3,        
+        'foure' => 5,        
+        'five' => 12,         
+        ];
+        
+        $secondArr = [        
+        'one' => 1,        
+        'seven' => 22,        
+        'three' => 32,         
+        'foure' => 5,         
+        'five' => 13,        
+        'six' => 37,       
+        ];
+
+        function check_sample_key($key1, $key2)
+        {
+            if ($key1 == $key2)
+                return 0;
+            else if ($key1 > $key2)
+                return 1;
+            else
+                return -1;
+        }
+
+        // найти все элементы которые отсутствуют в первом массиве и присутствуют во втором
+
+        var_dump(array_diff_ukey($secondArr , $firstArr , 'check_sample_key'));
+
+        // найти все элементы которые присутствую в первом и отсутствуют во втором
+
+        var_dump(array_diff_ukey($firstArr , $secondArr , 'check_sample_key'));
+        
+        // найти все элементы значения которых совпадают 
+
+        var_dump(array_intersect($firstArr, $secondArr));
+
+        // найти все элементы значения которых отличается
+
+        var_dump(array_merge(array_diff($firstArr , $secondArr) , array_diff($secondArr , $firstArr)));
+        
+        $thirdtArr = [
+            'one' => 1,
+            'two' => [             
+                'one' => 1,              
+                'seven' => 22,            
+                'three' => 32,            
+            ],            
+            'three' => [          
+                'one' => 1,            
+                'two' => 2,            
+            ],
+            'foure' => 5,              
+            'five' => [             
+                'three' => 32,             
+                'foure' => 5,             
+                'five' => 12,
+            ],  
+            ];
+            //получить все вторые элементы вложенных массивов
+            
+            $second_elements = [];
+            
+            foreach ($thirdtArr as $elements) {
+                if (is_array($elements)) {
+                    $values = array_values($elements);
+                    if (isset($values[1])) {
+                        $second_elements[] = $values[1];
+                    }
+                }
+            }
+            
+            print_r($second_elements);
+
+            //получить общее количество элементов в массиве
+
+            var_dump(count($thirdtArr, COUNT_RECURSIVE));
+
+
+            //получить сумму всех значений в массиве
+
+            function sum_arrays(array $array) {
+                $sum_array = array_sum($array);
+                foreach($array as $child) {
+                    $sum_array += is_array($child) ? sum_arrays($child) : 0;
+                }
+                return $sum_array;
+            }
+            print_r(sum_arrays($thirdtArr));
