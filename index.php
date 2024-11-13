@@ -1,61 +1,226 @@
-<?php
+<?php 
 
-//Создать функцию принимающую массив произвольной вложенности и определяющий любой элемент номер которого передан параметром во всех вложенных массивах.
+// 1) Создать родительский (главный класс)
+// Класс должен содержать 2 свойства
+// Каждое свойство должно иметь геттеры и сеттеры
+// должен содержать абстрактную функцию возведения в степень
 
-$array = [
-    "level1" => [
-        "level2" => [
-            "level3a" => [1, 2, "apple", [3, 4, "banana", [5, "cherry"]]],
-            "level3b" => ["nested" => [6, 7, "grape", ["nested2" => [8, "peach"]]]]
-        ],
-        "anotherLevel2" => [
-            9, "mango", [10, "pear", [11, "plum", [12, 13, "kiwi"]]]
-        ]
-    ],
-    "level1b" => ["strawberry", [14, "melon", [15, 16, ["apricot", "orange" , "tomato", "apple", "pear"]]]]
-];
+abstract class Weapon
+{
+    public ?int $damage;
+    public ?int $piercing;
 
-function show_choose_elements(array $array , int $int) {
-    $result = [];
-    foreach ($array as $key => $elem) {
-        if (is_array($elem)) {
-            if (isset($elem[$int])) {
-                $result[] = $elem[$int];
-            }
-            $result = array_merge($result, show_choose_elements($elem, $int));
-        }
+    public function showDamage(): int
+    {
+        return $this -> damage;
     }
-    return $result;
+
+    public function changeDamage(int $newDamage): void
+    {
+        $this -> damage = $newDamage;
+    }
+
+    public function showPiercing() {
+        return $this -> piercing;
+    }
+
+    public function changePiercing(int $newPiercing): void
+    {
+        $this -> piercing = $newPiercing;
+    }
+
+    abstract function power(int $damage , int $multiplier) ;
 }
 
-var_dump(show_choose_elements($array , 1));
 
-//Создать функцию которая считает все буквы b в переданной строке, в случае если передается не строка функция должна возвращать false
+// 2) Создать 3 наследника родительского класса
+// Каждый наследник должен содержать одно свойство
+// Каждое свойство должно иметь геттер и сеттер
+// Наследники должны реализовать по одному методу который выполняет одно математическое действие с данными родителя и своими данными
+// Один наследник не должен быть наследуемым
 
-function count_letter_b($string) {
-    if(!is_string($string)) return false;
-    else {
-        return substr_count(mb_strtolower($string), 'b');
+
+Class Knight extends Weapon 
+{
+    public ?int $size;
+
+    public function showSize(): int
+    {
+        return $this -> size;
+    }
+
+    public function changeSize(int $newSize): void
+    {
+        $this -> size = $newSize;
+    }
+
+    public function power(int $damage , int $multiplier): int
+    {
+        return pow($damage , $multiplier);
+    } 
+}
+
+Class Sword extends Weapon 
+{
+    public ?int $lucky;
+
+    public function showLucky(): int
+    {
+        return $this -> lucky;
+    }
+
+    public function changeLucky(int $newLucky): void
+    {
+        $this -> lucky = $newLucky;
+    }
+
+    public function power(int $damage , int $multiplier): int
+    {
+        return pow($damage , $multiplier);
+    } 
+}
+
+final Class Axe extends Weapon 
+{
+
+    public ?int $skill;
+
+    public function showSkill(): int
+    {
+        return $this -> skill;
+    }
+
+    public function changeSkill(int $newSkill): void
+    {
+        $this -> skill = $newSkill;
+    }
+
+    public function power(int $damage , int $multiplier): int
+    {
+        return pow($damage , $multiplier);
+    } 
+}
+
+// 3) Создать по 2 наследника от наследников первого уровня
+
+// Каждое свойство должно иметь геттер и сеттер
+
+// Наследники должны реализовать по одному методу который выполняет одно математическое действие с данными родителя и своими данными
+
+// И по одному методу который выполняет любое математическое действие со свойством корневого класса и своим свойством
+
+// В случае если реализован наследник класса содержащего абстрактную функцию то класс должен содержать реализацию абстракции
+
+class ShortKnight extends Knight 
+{
+    public ?int $shield;
+
+    public function showShield(): int
+    {
+        return $this->shield;
+    }
+
+    public function changeShield(int $newShield): void
+    {
+        $this->shield = $newShield;
+    }
+
+    public function power(int $damage, int $multiplier): int
+    {
+        return pow($damage + $this->showShield(), $multiplier);
+    }
+
+    public function calculateDamageWithShield(): int
+    {
+        return $this->showDamage() + $this->showShield();
     }
 }
-var_dump(count_letter_b('abasfasbasfsafbasfasfbasfsafbbbsasBBBb'));
 
-//Создать функцию которая считает сумму значений всех элементов массива произвольной глубины
-$array = [10, "apple", [5, "banana", [15, 10, "carrot"], 8], "dog", 12, ["elephant", [3, 7, "fox"], 5], "grape", 5];
+class LongKnight extends Knight 
+{
+    public ?int $speed;
 
-function sum_arrays(array $array) {
-    $sum_array = array_sum($array);
-    foreach($array as $child) {
-        $sum_array += is_array($child) ? sum_arrays($child) : 0;
+    public function showSpeed(): int
+    {
+        return $this->speed;
     }
-    return $sum_array;
+
+    public function changeSpeed(int $newSpeed): void
+    {
+        $this->speed = $newSpeed;
+    }
+
+    public function power(int $damage, int $multiplier): int
+    {
+        return pow($damage + $this->showSpeed(), $multiplier);
+    }
+
+    public function calculateDamageWithSpeed(): int
+    {
+        return $this->showDamage() * $this->showSpeed();
+    }
 }
-print_r(sum_arrays($array));
 
-//Создать функцию которая определит сколько квадратов меньшего размера можно вписать в квадрат большего размера размер возвращать в float
+class ShortSword extends Sword 
+{
+    public ?int $luckFactor;
 
-function define_count_smaller_square(int $bigger_num , int $smaller_num) {
-    return pow($bigger_num , 2) / pow($smaller_num , 2);
+    public function showLuckFactor(): int
+    {
+        return $this->luckFactor;
+    }
+
+    public function changeLuckFactor(int $newLuckFactor): void
+    {
+        $this->luckFactor = $newLuckFactor;
+    }
+
+    public function power(int $damage, int $multiplier): int
+    {
+        return pow($damage + $this->showLuckFactor(), $multiplier);
+    }
+
+    public function calculatePiercingWithLuck(): int
+    {
+        return $this->showPiercing() + $this->showLuckFactor();
+    }
 }
 
-var_dump(define_count_smaller_square(10 , 8));
+class LongSword extends Sword 
+{
+    public ?int $sharpness;
+
+    public function showSharpness(): int
+    {
+        return $this->sharpness;
+    }
+
+    public function changeSharpness(int $newSharpness): void
+    {
+        $this->sharpness = $newSharpness;
+    }
+
+    public function power(int $damage, int $multiplier): int
+    {
+        return pow($damage + $this->showSharpness(), $multiplier);
+    }
+
+    public function calculatePiercingWithSharpness(): int
+    {
+        return $this->showPiercing() * $this->showSharpness();
+    }
+}
+
+
+$sword = new LongSword();
+$sword->changeDamage(40);
+$sword->changePiercing(20);
+$sword->changeLucky(15);
+$sword->changeSharpness(10);
+
+var_dump($sword->showDamage()); 
+var_dump($sword->showPiercing()); 
+var_dump($sword->showSharpness()); 
+
+var_dump($sword->power($sword->showDamage(), 2)); 
+var_dump($sword->calculatePiercingWithSharpness()); 
