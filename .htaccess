@@ -1,0 +1,7 @@
+RewriteEngine On
+RewriteBase /hillel/
+
+# Перенаправление всех запросов на index.php
+RewriteCond %{REQUEST_URI} !^/hillel/index\.php$
+RewriteCond %{REQUEST_URI} !^/hillel/$
+RewriteRule ^.*$ /hillel/index.php [L]
