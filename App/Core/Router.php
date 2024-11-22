@@ -2,53 +2,65 @@
 
 namespace App\Core;
 
-class Router 
+final class Router 
 {
+
     const CONTROLLER_NAMESPACE = 'App\Controllers\\';
+    private string $name_method = '';
+    private string $name_controller = '';
+    private array $request_uri = [];
+    private array $config = [];
+
+    public function __construct($config)
+    {
+        $this->config = $config;
+        $this->procces_request();
+        $this->set_controller_name();
+        $this->set_method_name();
+    }
 
     public function run() 
     {
+        $this->validate();
         $namespace = $this->get_name_space();
 
-        if (!class_exists($namespace)) {
-            $namespace = self::CONTROLLER_NAMESPACE . 'Error';
-        }
+        $controller_obj = new $namespace;
 
-        $controller = new $namespace;
+        call_user_func([$controller_obj, $this->name_method]);
+    }
 
-        $method = $this->get_method_name();
-
-        if (method_exists($controller, $method)) {
-            call_user_func([$controller, $method]);
+    private function validate(): void
+    {
+        if (!isset($this->config[$this->name_controller . '/' . $this->name_method])) 
+        {
+            $this->name_controller = 'Error';
+            $this->name_method = 'index';
         } else {
-            if (method_exists($controller, 'notFound')) {
-                call_user_func([$controller, 'notFound']);
-            } else {
-                echo "Error: Method '$method' not found in controller.";
-            }
+            $config_array = explode('/' , $this->config[$this->name_controller . '/' . $this->name_method]);
+            $name_controller = $config_array[0];
+            $name_method = $config_array[1];
         }
     }
 
     private function get_name_space(): string 
     {
-        $controller_name = $this->prepare_controller_name();
-
-        return self::CONTROLLER_NAMESPACE . ucfirst($controller_name);
+        return self::CONTROLLER_NAMESPACE . ucfirst($this->name_controller);
+        
     }
 
-    private function prepare_controller_name()
+    private function set_controller_name(): void
     {
-        $result = isset($_SERVER['REQUEST_URI']) ? explode('/', $_SERVER['REQUEST_URI']) : 'Main';
-        $result = is_array($result) && !empty($result[1]) ? $result[1] : 'Main';
-
-        return $result;
+        $this->name_controller = !empty($this->request_uri[2]) ? $this->request_uri[2] : 'main';
     }
 
-    private function get_method_name(): string 
+    private function set_method_name(): void 
     {
-        $result = isset($_SERVER['REQUEST_URI']) ? explode('/', $_SERVER['REQUEST_URI']) : [];
-        $method = is_array($result) && !empty($result[2]) ? $result[2] : 'index'; 
-
-        return $method;
+       $this->name_method = !empty($this->request_uri[3]) ? $this->request_uri[3] : 'index'; 
     }
+
+    private function procces_request(): void
+    {
+        $this->request_uri = isset($_SERVER['REQUEST_URI']) ? explode('/', $_SERVER['REQUEST_URI']) : [];
+    }
+
 }

@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 class Error
 {
+    
     public function index() 
     {
         echo "404 Page Not Found.";
@@ -13,4 +14,5 @@ class Error
     {
         echo "Method not found.";
     }
+
 }
