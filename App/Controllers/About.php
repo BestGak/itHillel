@@ -7,7 +7,9 @@ class About
 
     public function index() 
     {
-     return 'This is About Page';
+
+     echo 'This is About Page';
+    
     }
 
 }
