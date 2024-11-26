@@ -6,6 +6,12 @@ return
     'main/index' => 'Main/index',
     'main/show_text' => 'Main/show_text',
     'about/index' => 'About/index',
-    'gallery/index' => 'Gallery/index',
-    'error/index' => 'Error/index'
+    'gallery' => 'Gallery/view',
+    'gallery/index' => 'Gallery/view',
+    'error/index' => 'Error/index',
+    'admin/main' => '',
+    'admin/about' => '',
+    'admin/gallery' => '',
+    'admin/error' => ''
+
 ];

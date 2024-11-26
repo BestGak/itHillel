@@ -11,4 +11,5 @@ return array(
     'App\\Controllers\\Gallery' => $baseDir . '/App/Controllers/Gallery.php',
     'App\\Controllers\\Main' => $baseDir . '/App/Controllers/Main.php',
     'App\\Core\\Router' => $baseDir . '/App/Core/Router.php',
+    'App\\Core\\Viewer' => $baseDir . '/App/Core/Viewer.php',
 );

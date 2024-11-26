@@ -2,14 +2,25 @@
 
 namespace App\Controllers;
 
-class Gallery 
+use App\Core\Viewer;
+
+class Gallery extends Controller
 {
 
-    public function index() 
-    {
-
-     echo 'This is Gallery page';
     
+    public function view() 
+    {
+      $this -> public_view('gallery/gallery-main');
+    }
+
+    public function create() 
+    {
+        
+    }
+
+    public function delete() 
+    {
+        
     }
    
 }

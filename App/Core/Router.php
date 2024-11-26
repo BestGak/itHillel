@@ -37,8 +37,8 @@ final class Router
             $this->name_method = 'index';
         } else {
             $config_array = explode('/' , $this->config[$this->name_controller . '/' . $this->name_method]);
-            $name_controller = $config_array[0];
-            $name_method = $config_array[1];
+            $this -> name_controller = $config_array[0];
+            $this -> name_method = $config_array[1];
         }
     }
 

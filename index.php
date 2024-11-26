@@ -7,4 +7,4 @@ use App\Core\Router;
 
 $router = new Router($config);
 
-print_r($router -> run());
+$router -> run();

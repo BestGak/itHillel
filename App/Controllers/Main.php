@@ -2,15 +2,18 @@
 
 namespace App\Controllers;
 
-namespace App\Controllers;
+use App\Core\Viewer;
 
-class Main 
+class Main extends Controller
 {
-    public function index() 
-    {
-
-      echo "This is the Main page.";
-
+   public function index() 
+   {
+      $this -> data = [
+         'test' => 'Main',
+         'test1' => 'About',
+      ];
+      
+      $this -> public_view();
    }
 
    public function show_text()
