@@ -55,7 +55,7 @@ final class Router
 
     private function set_method_name(): void 
     {
-       $this->name_method = !empty($this->request_uri[3]) ? $this->request_uri[3] : 'index'; 
+       $this->name_method = !empty($this->request_uri[3]) ? $this->request_uri[3] : 'view'; 
     }
 
     private function procces_request(): void

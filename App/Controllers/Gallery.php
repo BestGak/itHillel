@@ -13,6 +13,11 @@ class Gallery extends Controller
       $this -> public_view('gallery/gallery-main');
     }
 
+    public function view_admin() 
+    {
+      $this -> admin_view('gallery/gallery-main');
+    }
+
     public function create() 
     {
         

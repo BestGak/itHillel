@@ -1,4 +1,4 @@
-<h2>This is Main page</h2>
+<h2>This is About page</h2>
 <ul>
     <li>1</li>
     <li>2</li>

@@ -2,14 +2,19 @@
 
 namespace App\Controllers;
 
+use App\Core\Viewer;
+
 class About extends Controller
 {
 
-    public function index() 
+    public function view() 
     {
+      $this -> public_view('about/about-main');
+    }
 
-     echo 'This is About Page';
-    
+    public function view_admin() 
+    {
+      $this -> admin_view('about/about-main');
     }
 
 }
