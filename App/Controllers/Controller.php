@@ -18,4 +18,13 @@ class Controller
 
     }
 
+    public function admin_view(string $part_name = 'main')
+    {
+
+        $view = new Viewer();
+        $view -> setData($this -> data);
+        $view -> include_admin_template($part_name);
+
+    }
+
 }

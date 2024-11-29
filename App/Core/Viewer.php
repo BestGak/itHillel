@@ -14,9 +14,10 @@ class Viewer
         include __DIR__ . '/../../public/templates/template-public.php';
     }
 
-    public function include_admin_template():void
+    public function include_admin_template(string $part_name = 'main'):void
     {
-        include __DIR__ . '/../../public/templates/template-admin.php';
+        extract($this -> data);
+        include __DIR__ . '/../../admin/templates/template-admin.php';
     }
 
     public function setData(array $data):void

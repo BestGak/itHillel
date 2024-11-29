@@ -6,19 +6,19 @@ use App\Core\Viewer;
 
 class Main extends Controller
 {
-   public function index() 
+
+   public function view() 
    {
-      $this -> data = [
-         'test' => 'Main',
-         'test1' => 'About',
-      ];
-      
-      $this -> public_view();
+   $this -> data = [
+      'test' => 'Main',
+      'test1' => 'About',
+   ];
+     $this -> public_view();
    }
 
-   public function show_text()
+   public function view_admin() 
    {
-      echo 'Its second method';
+     $this -> admin_view();
    }
 
 }
