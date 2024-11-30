@@ -12,9 +12,4 @@ class About extends Controller
       $this -> public_view('about/about-main');
     }
 
-    public function view_admin() 
-    {
-      $this -> admin_view('about/about-main');
-    }
-
 }

@@ -16,9 +16,5 @@ class Main extends Controller
      $this -> public_view();
    }
 
-   public function view_admin() 
-   {
-     $this -> admin_view();
-   }
 
 }
