@@ -1,10 +1,35 @@
-<h2>This is Admin Posts page</h2>
-<ul>
-    <li>1</li>
-    <li>2</li>
-    <li>3</li>
-    <li>4</li>
-    <li>5</li>
-</ul>
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero mollitia voluptates debitis fuga error quae reiciendis nesciunt corporis, maiores accusamus libero sit vitae ab exercitationem nihil, repellat hic non animi.</p>
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque obcaecati blanditiis maiores illum voluptates, nostrum expedita? Voluptate, quis laudantium neque, quaerat sint perferendis voluptatum facere fugit praesentium nam odio velit!</p>
+<h2>Это страница работы с постами</h2>
+<a href="/hillel/admin/posts/create">Создать</a>
+<table>
+    <tr>
+        <td>ID</td>
+        <td>Заголовок</td>
+        <td>Описание</td>
+        <td>Название Категории</td>
+        <td>Айди категории</td>
+    </tr>
+    <?php
+        foreach ($data as $data_posts_array) 
+        { ?>
+            <tr>
+                <?php if($data_posts_array['id']) : ?>
+                    <td><?= $data_posts_array['id'] ?></td>
+                <?php endif; ?>
+                <?php if($data_posts_array['title']) : ?>
+                    <td><?= $data_posts_array['title'] ?></td>
+                <?php endif; ?>
+                <?php if($data_posts_array['content']) : ?>
+                    <td><?= $data_posts_array['content'] ?></td>
+                <?php endif; ?>
+                <?php if($data_posts_array['category']) : ?>
+                    <td><?= $data_posts_array['category'] ?></td>
+                <?php endif; ?>
+                <?php if($data_posts_array['category_id']) : ?>
+                    <td><?= $data_posts_array['category_id'] ?></td>
+                <?php endif; ?>   
+                <td><a href="/hillel/admin/posts/update?id=<?= $data_posts_array['id'] ?>">Update</a></td>           
+                <td><a href="/hillel/admin/posts/delete?id=<?= $data_posts_array['id'] ?>">Delete</a></td>             
+            </tr>
+    <?php } ?>
+
+</table>

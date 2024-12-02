@@ -7,8 +7,8 @@ use App\Core\Viewer;
 
 class Users extends Controller 
 {
-    public function view_admin() 
+    public function view() 
     {
-      $this -> admin_view('gallery/gallery-main');
+      $this -> admin_view('users/users-main');
     }
 }

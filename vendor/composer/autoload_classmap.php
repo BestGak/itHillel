@@ -6,7 +6,16 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Controller\\Models\\Galery' => $baseDir . '/App/Controllers/Models/Gallery.php',
+    'App\\Controller\\Models\\GaleryCategory' => $baseDir . '/App/Controllers/Models/GalleryCategory.php',
+    'App\\Controller\\Models\\PostGallery' => $baseDir . '/App/Controllers/Models/PostCategory.php',
+    'App\\Controller\\Models\\Posts' => $baseDir . '/App/Controllers/Models/Post.php',
+    'App\\Controller\\Models\\Users' => $baseDir . '/App/Controllers/Models/User.php',
     'App\\Controllers\\About' => $baseDir . '/App/Controllers/About.php',
+    'App\\Controllers\\Admin\\Gallery' => $baseDir . '/App/Controllers/Admin/Gallery.php',
+    'App\\Controllers\\Admin\\Posts' => $baseDir . '/App/Controllers/Admin/Posts.php',
+    'App\\Controllers\\Admin\\Users' => $baseDir . '/App/Controllers/Admin/Users.php',
+    'App\\Controllers\\Controller' => $baseDir . '/App/Controllers/Controller.php',
     'App\\Controllers\\Error' => $baseDir . '/App/Controllers/Error.php',
     'App\\Controllers\\Gallery' => $baseDir . '/App/Controllers/Gallery.php',
     'App\\Controllers\\Main' => $baseDir . '/App/Controllers/Main.php',

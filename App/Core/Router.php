@@ -30,8 +30,7 @@ final class Router
     private function validate(): void
     {
         $key = $this->getConfigKey();
-
-        if ($this->isAdminRequest()) {
+            if ($this->isAdminRequest()) {
             if (empty($this->request_uri[3]) || !isset($this->config[$key])) {
                 $this->setErrorController();
             } else {
@@ -63,7 +62,7 @@ final class Router
     private function setMethodName(): void
     {
         if ($this->isAdminRequest()) {
-            $this->name_method = $this->request_uri[4] ?? 'view_admin';
+            $this->name_method = $this->request_uri[4] ?? 'view';
         } else {
             $this->name_method = $this->request_uri[3] ?? 'view';
         }
@@ -71,7 +70,7 @@ final class Router
 
     private function processRequest(): void
     {
-        $this->request_uri = isset($_SERVER['REQUEST_URI']) ? array_filter(explode('/', $_SERVER['REQUEST_URI'])) : [];
+        $this->request_uri = isset($_SERVER['REDIRECT_URL']) ? array_filter(explode('/', $_SERVER['REDIRECT_URL'])) : [];
     }
 
     private function isAdminRequest(): bool
@@ -87,10 +86,10 @@ final class Router
 
     private function setAdminController(): void
     {
-        $key = 'admin/' . $this->name_controller;
+        $key = 'admin/' . $this->name_controller ;
         $config_array = $this->config[$key] ? explode('/', $this->config[$key]) : [];
         $this->name_controller = isset($config_array[1]) ? "Admin\\" . $config_array[1] : 'Error';
-        $this->name_method = $config_array[2] ?? 'index';
+        $this->name_method = $config_array[2] = $this->name_method ?? 'index';
     }
 
     private function setNormalController(): void
@@ -102,7 +101,7 @@ final class Router
     }
 
     private function getConfigKey(): string
-    {
+    {  
         return $this->isAdminRequest()
             ? 'admin/' . $this->name_controller
             : $this->name_controller . '/' . $this->name_method;

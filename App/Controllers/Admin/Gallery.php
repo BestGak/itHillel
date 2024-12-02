@@ -8,7 +8,7 @@ use App\Core\Viewer;
 class Gallery extends Controller
 {
 
-    public function view_admin() 
+    public function view() 
     {
       $this -> admin_view('gallery/gallery-main');
     }
