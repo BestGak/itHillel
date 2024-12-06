@@ -21,7 +21,16 @@ class ComposerStaticInite6405dd01c23ce88e7c6d1db3670a0a9
     );
 
     public static $classMap = array (
+        'App\\Controller\\Models\\Galery' => __DIR__ . '/../..' . '/App/Controllers/Models/Gallery.php',
+        'App\\Controller\\Models\\GaleryCategory' => __DIR__ . '/../..' . '/App/Controllers/Models/GalleryCategory.php',
+        'App\\Controller\\Models\\PostGallery' => __DIR__ . '/../..' . '/App/Controllers/Models/PostCategory.php',
+        'App\\Controller\\Models\\Posts' => __DIR__ . '/../..' . '/App/Controllers/Models/Post.php',
+        'App\\Controller\\Models\\Users' => __DIR__ . '/../..' . '/App/Controllers/Models/User.php',
         'App\\Controllers\\About' => __DIR__ . '/../..' . '/App/Controllers/About.php',
+        'App\\Controllers\\Admin\\Gallery' => __DIR__ . '/../..' . '/App/Controllers/Admin/Gallery.php',
+        'App\\Controllers\\Admin\\Posts' => __DIR__ . '/../..' . '/App/Controllers/Admin/Posts.php',
+        'App\\Controllers\\Admin\\Users' => __DIR__ . '/../..' . '/App/Controllers/Admin/Users.php',
+        'App\\Controllers\\Controller' => __DIR__ . '/../..' . '/App/Controllers/Controller.php',
         'App\\Controllers\\Error' => __DIR__ . '/../..' . '/App/Controllers/Error.php',
         'App\\Controllers\\Gallery' => __DIR__ . '/../..' . '/App/Controllers/Gallery.php',
         'App\\Controllers\\Main' => __DIR__ . '/../..' . '/App/Controllers/Main.php',

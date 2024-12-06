@@ -7,8 +7,8 @@
     <title>Document</title>
 </head>
 <body>
-    <?php include __DIR__ . '/../../admin/parts/header.php' ?> 
-    <?php include __DIR__ . '/../../admin/parts/'. $part_name .'.php' ?> 
-    <?php include __DIR__ . '/../../admin/parts/footer.php' ?> 
+    <?php include __DIR__ . '/../parts/header.php' ?> 
+    <?php include __DIR__ . '/../parts/'. $part_name .'.php' ?> 
+    <?php include __DIR__ . '/../parts/footer.php' ?> 
 </body>
 </html>

@@ -6,8 +6,14 @@ return
     'main/view' => 'Main/view',
     'about/view' => 'About/view',
     'gallery/view' => 'Gallery/view',
-    'admin/main' => 'Main/view_admin',
-    'admin/about' => 'About/view_admin',
-    'admin/gallery' => 'Gallery/view_admin',
+    'Gallery/update' => 'Gallery/update',
+    'Gallery/create' => 'Gallery/create',
+    'Gallery/delete' => 'Gallery/delete',
+    'admin/posts' => 'Admin/Posts/view',
+    'admin/posts/create' => 'Admin/Posts/create',
+    'admin/posts/update' => 'Admin/Posts/update',
+    'admin/posts/delete' => 'Admin/Posts/delete',
+    'admin/gallery' => 'Admin/Gallery/view_admin',
+    'admin/users' => 'Admin/users/view_admin',
     
 ];

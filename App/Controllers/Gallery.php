@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Core\Viewer;
+use App\Controllers\Models\Gallery as GalleryAdminModel;
 
 class Gallery extends Controller
 {
@@ -10,22 +11,31 @@ class Gallery extends Controller
     
     public function view() 
     {
+      $model = new GalleryAdminModel();
+      $model -> get_all_images();
+      $this->data = ['data' => $model->get_all_images()];
       $this -> public_view('gallery/gallery-main');
     }
 
-    public function view_admin() 
+    public function update() 
     {
-      $this -> admin_view('gallery/gallery-main');
+      $model = new GalleryAdminModel();
+      $model -> get_all_images();
+      $this->data = ['data' => $model->get_image_by_id($_GET['id'])];
+      $this -> public_view('gallery/gallery-update');   
     }
 
-    public function create() 
+    public function create():void 
     {
-        
+      $this -> public_view('gallery/gallery-create');   
     }
 
-    public function delete() 
+    public function delete():void  
     {
-        
+      $model = new GalleryAdminModel();
+      $model -> get_all_images();
+      $this->data = ['data' => $model->get_image_by_id($_GET['id'])];
+      $this -> public_view('gallery/gallery-delete');   
     }
    
 }

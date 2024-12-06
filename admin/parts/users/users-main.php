@@ -1,4 +1,4 @@
-<h2>This is Admin About page</h2>
+<h2>This is Admin Users page</h2>
 <ul>
     <li>1</li>
     <li>2</li>

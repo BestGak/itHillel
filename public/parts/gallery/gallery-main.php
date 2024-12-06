@@ -1,10 +1,35 @@
 <h2>This is Gallery page</h2>
-<ul>
-    <li>1</li>
-    <li>2</li>
-    <li>3</li>
-    <li>4</li>
-    <li>5</li>
-</ul>
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero mollitia voluptates debitis fuga error quae reiciendis nesciunt corporis, maiores accusamus libero sit vitae ab exercitationem nihil, repellat hic non animi.</p>
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque obcaecati blanditiis maiores illum voluptates, nostrum expedita? Voluptate, quis laudantium neque, quaerat sint perferendis voluptatum facere fugit praesentium nam odio velit!</p>
+<a href="/hillel/Gallery/create/">Create</a>
+<table>
+    <tr>
+        <td>ID</td>
+        <td>Name</td>
+        <td>Image Url</td>
+        <td>Category Name</td>
+        <td>Category ID</td>
+    </tr>
+    <?php
+        foreach ($data as $data_image_array) 
+        { ?>
+            <tr>
+                <?php if($data_image_array['id']) : ?>
+                    <td><?= $data_image_array['id'] ?></td>
+                <?php endif; ?>
+                <?php if($data_image_array['name']) : ?>
+                    <td><?= $data_image_array['name'] ?></td>
+                <?php endif; ?>
+                <?php if($data_image_array['image_url']) : ?>
+                    <td><?= $data_image_array['image_url'] ?></td>
+                <?php endif; ?>
+                <?php if($data_image_array['category']) : ?>
+                    <td><?= $data_image_array['category'] ?></td>
+                <?php endif; ?>
+                <?php if($data_image_array['category_id']) : ?>
+                    <td><?= $data_image_array['category_id'] ?></td>
+                <?php endif; ?>   
+                <td><a href="/hillel/Gallery/update?id=<?= $data_image_array['id'] ?>">Update</a></td>           
+                <td><a href="/hillel/Gallery/delete?id=<?= $data_image_array['id'] ?>">Delete</a></td>             
+            </tr>
+    <?php } ?>
+
+</table>
