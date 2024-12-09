@@ -21,10 +21,8 @@ class ComposerStaticInite6405dd01c23ce88e7c6d1db3670a0a9
     );
 
     public static $classMap = array (
-        'App\\Controller\\Models\\Galery' => __DIR__ . '/../..' . '/App/Controllers/Models/Gallery.php',
         'App\\Controller\\Models\\GaleryCategory' => __DIR__ . '/../..' . '/App/Controllers/Models/GalleryCategory.php',
         'App\\Controller\\Models\\PostGallery' => __DIR__ . '/../..' . '/App/Controllers/Models/PostCategory.php',
-        'App\\Controller\\Models\\Posts' => __DIR__ . '/../..' . '/App/Controllers/Models/Post.php',
         'App\\Controller\\Models\\Users' => __DIR__ . '/../..' . '/App/Controllers/Models/User.php',
         'App\\Controllers\\About' => __DIR__ . '/../..' . '/App/Controllers/About.php',
         'App\\Controllers\\Admin\\Gallery' => __DIR__ . '/../..' . '/App/Controllers/Admin/Gallery.php',
@@ -34,8 +32,12 @@ class ComposerStaticInite6405dd01c23ce88e7c6d1db3670a0a9
         'App\\Controllers\\Error' => __DIR__ . '/../..' . '/App/Controllers/Error.php',
         'App\\Controllers\\Gallery' => __DIR__ . '/../..' . '/App/Controllers/Gallery.php',
         'App\\Controllers\\Main' => __DIR__ . '/../..' . '/App/Controllers/Main.php',
+        'App\\Controllers\\Models\\Gallery' => __DIR__ . '/../..' . '/App/Controllers/Models/Gallery.php',
+        'App\\Controllers\\Models\\Posts' => __DIR__ . '/../..' . '/App/Controllers/Models/Posts.php',
         'App\\Core\\Router' => __DIR__ . '/../..' . '/App/Core/Router.php',
         'App\\Core\\Viewer' => __DIR__ . '/../..' . '/App/Core/Viewer.php',
+        'App\\Sql\\Connector' => __DIR__ . '/../..' . '/App/Sql/Connector.php',
+        'App\\Sql\\Insert' => __DIR__ . '/../..' . '/App/Sql/Insert.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
