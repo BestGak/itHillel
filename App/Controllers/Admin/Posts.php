@@ -24,7 +24,8 @@ class Posts extends Controller
 
     public function create(): void
     {
-        $this->admin_view('posts/posts-create');
+
+            $this->admin_view('posts/posts-create');
     }
 
     public function delete()

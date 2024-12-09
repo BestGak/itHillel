@@ -6,10 +6,8 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'App\\Controller\\Models\\Galery' => $baseDir . '/App/Controllers/Models/Gallery.php',
     'App\\Controller\\Models\\GaleryCategory' => $baseDir . '/App/Controllers/Models/GalleryCategory.php',
     'App\\Controller\\Models\\PostGallery' => $baseDir . '/App/Controllers/Models/PostCategory.php',
-    'App\\Controller\\Models\\Posts' => $baseDir . '/App/Controllers/Models/Post.php',
     'App\\Controller\\Models\\Users' => $baseDir . '/App/Controllers/Models/User.php',
     'App\\Controllers\\About' => $baseDir . '/App/Controllers/About.php',
     'App\\Controllers\\Admin\\Gallery' => $baseDir . '/App/Controllers/Admin/Gallery.php',
@@ -19,6 +17,10 @@ return array(
     'App\\Controllers\\Error' => $baseDir . '/App/Controllers/Error.php',
     'App\\Controllers\\Gallery' => $baseDir . '/App/Controllers/Gallery.php',
     'App\\Controllers\\Main' => $baseDir . '/App/Controllers/Main.php',
+    'App\\Controllers\\Models\\Gallery' => $baseDir . '/App/Controllers/Models/Gallery.php',
+    'App\\Controllers\\Models\\Posts' => $baseDir . '/App/Controllers/Models/Posts.php',
     'App\\Core\\Router' => $baseDir . '/App/Core/Router.php',
     'App\\Core\\Viewer' => $baseDir . '/App/Core/Viewer.php',
+    'App\\Sql\\Connector' => $baseDir . '/App/Sql/Connector.php',
+    'App\\Sql\\Insert' => $baseDir . '/App/Sql/Insert.php',
 );
