@@ -5,8 +5,8 @@ namespace App\Sql;
 class Insert
 {
     private string $table_name;
-    private array $field_set;
-    private array $values;
+    private array $field_set = [];
+    private array $values = [];
 
     public function set_table_name(string $table_name): void
     {
@@ -16,27 +16,25 @@ class Insert
         $this->table_name = $table_name;
     }
 
-    public function set_field_set(array $field_set): void
+    public function set_fields_and_values(array $data): void
     {
-        if (empty($field_set) || !array_reduce($field_set, fn($carry, $field) => $carry && is_string($field), true)) {
-            throw new \Exception("Поля должны быть массивом строк");
-        }
-        $this->field_set = $field_set;
-    }
-
-    public function set_values(array $values): void
-    {
-        if (empty($values) || !$this->is_multidimensional_array($values)) {
-            throw new \Exception("Значения должны быть не пустым многомерным массивом");
+        if (empty($data)) {
+            throw new \Exception("Данные не могут быть пустыми");
         }
 
-        $first_keys = array_keys($values[0]);
-        foreach ($values as $value) {
-            if (array_keys($value) !== $first_keys) {
-                throw new \Exception("Ключи всех массивов значений должны совпадать");
+        if (!$this->is_multidimensional_array($data)) {
+            $data = [$data];
+        }
+
+        $this->field_set = array_keys($data[0]);
+
+        foreach ($data as $row) {
+            if (array_keys($row) !== $this->field_set) {
+                throw new \Exception("Ключи всех строк данных должны совпадать");
             }
         }
-        $this->values = $values;
+
+        $this->values = array_map(fn($row) => array_values($row), $data);
     }
 
     public function build_sql(): string
@@ -59,9 +57,8 @@ class Insert
     {
         $result = [];
         foreach ($this->values as $value) {
-            $result[] = '(' . implode(', ', array_map(fn($val) => "'" . addslashes($val) . "'", $value)) . ')';
+            $result[] = '(' . implode(', ', array_map(fn($val) => "'" . addslashes((string)$val) . "'", $value)) . ')';
         }
-
         return implode(', ', $result);
     }
 }

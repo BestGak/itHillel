@@ -2,12 +2,10 @@
 
 namespace App\Controllers\Models;
 
-use App\Sql\Connector;
 use App\Sql\Insert;
 
 class Posts
 {
-
     private array $posts = [
         ['id' => 1, 'title' => 'Введение в PHP', 'content' => 'PHP — популярный скриптовый язык для веб-разработки.', 'category' => 'Программирование', 'category_id' => 201],
         ['id' => 2, 'title' => 'Понимание массивов', 'content' => 'Массивы — это важная структура данных в программировании.', 'category' => 'Программирование', 'category_id' => 201],
@@ -20,30 +18,23 @@ class Posts
     {
         $insert = new Insert();
         $insert->set_table_name('posts');
-        $insert->set_field_set(['id', 'title', 'content', 'category', 'category_id']);
-        $insert->set_values([
-            [1, 'Введение в PHP', 'PHP — популярный скриптовый язык для веб-разработки.', 'Программирование', 201],
-            [2, 'Понимание массивов', 'Массивы — это важная структура данных в программировании.', 'Программирование', 201],
-            [3, 'Советы по эффективной работе', 'Организация рабочего процесса помогает достигать целей быстрее.', 'Продуктивность', 202],
-            [4, 'Путешествия по Европе', 'Европа — это множество культур и архитектурных стилей.', 'Путешествия', 203],
-            [5, 'Здоровый образ жизни', 'Сбалансированное питание и спорт укрепляют здоровье.', 'Здоровье', 204],
-        ]);
+        $insert->set_fields_and_values($this->posts);
 
-        var_dump($insert->build_sql());
+        echo $insert->build_sql(); 
     }
 
-    public function getAllPosts(): array
+    public function get_all_posts(): array
     {
         return $this->posts;
     }
 
-    public function getPostById(int $id): array
+    public function get_post_by_id(int $id): array
     {
         foreach ($this->posts as $post) {
             if ($post['id'] === $id) {
                 return $post;
             }
         }
-        throw new \Exception('Пост с указанным ID не найден');
+        throw new \Exception("Пост с ID {$id} не найден");
     }
 }

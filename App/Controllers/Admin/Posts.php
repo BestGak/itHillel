@@ -11,14 +11,14 @@ class Posts extends Controller
     public function view()
     {
         $model = new PostsAdminModel();
-        $this->data = ['data' => $model->getAllPosts()];
+        $this->data = ['data' => $model->get_all_posts()];
         $this->admin_view('posts/posts-main');
     }
 
     public function update()
     {
         $model = new PostsAdminModel();
-        $this->data = ['data' => $model->getPostById($_GET['id'])];
+        $this->data = ['data' => $model->get_post_by_id($_GET['id'])];
         $this->admin_view('posts/posts-update');
     }
 
@@ -31,7 +31,7 @@ class Posts extends Controller
     public function delete()
     {
         $model = new PostsAdminModel();
-        $this->data = ['data' => $model->getPostById($_GET['id'])];
+        $this->data = ['data' => $model->get_post_by_id($_GET['id'])];
         $this->admin_view('posts/posts-delete');
     }
 }
