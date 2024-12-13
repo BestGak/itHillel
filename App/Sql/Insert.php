@@ -2,11 +2,22 @@
 
 namespace App\Sql;
 
+use App\Sql\Connector;
+use PDO;
+
 class Insert
 {
     private string $table_name;
     private array $field_set = [];
     private array $values = [];
+    private PDO $connect;
+
+
+    public function __construct()
+    {
+        $this->connect = (new Connector())->connect();
+        
+    }
 
     public function set_table_name(string $table_name): void
     {
@@ -46,6 +57,11 @@ class Insert
         return 'INSERT INTO ' . $this->table_name
             . ' (' . implode(', ', $this->field_set) . ') VALUES '
             . $this->get_values();
+    }
+
+    public function execute()
+    {
+        $this->connect->query($this->build_sql());
     }
 
     private function is_multidimensional_array(array $array): bool

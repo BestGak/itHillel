@@ -24,7 +24,11 @@ class Posts extends Controller
 
     public function create(): void
     {
-
+            if(!empty($_POST))
+            {
+                $model = new PostsAdminModel();
+                $model->save(array_intersect_key(array_filter($_POST) , $model->to_array()));
+            }
             $this->admin_view('posts/posts-create');
     }
 

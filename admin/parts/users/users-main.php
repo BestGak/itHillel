@@ -1,10 +1,31 @@
 <h2>This is Admin Users page</h2>
-<ul>
-    <li>1</li>
-    <li>2</li>
-    <li>3</li>
-    <li>4</li>
-    <li>5</li>
-</ul>
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero mollitia voluptates debitis fuga error quae reiciendis nesciunt corporis, maiores accusamus libero sit vitae ab exercitationem nihil, repellat hic non animi.</p>
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque obcaecati blanditiis maiores illum voluptates, nostrum expedita? Voluptate, quis laudantium neque, quaerat sint perferendis voluptatum facere fugit praesentium nam odio velit!</p>
+<a href="/hillel/admin/users/create">Добавить пользователя</a>
+<table>
+    <tr>
+        <td>ID</td>
+        <td>Имя</td>
+        <td>Пароль</td>
+        <td>Почта</td>
+    </tr>
+    <?php
+        foreach ($data as $data_users_array) 
+        { ?>
+            <tr>
+                <?php if($data_users_array['id']) : ?>
+                    <td><?= $data_users_array['id'] ?></td>
+                <?php endif; ?>
+                <?php if($data_users_array['name']) : ?>
+                    <td><?= $data_users_array['name'] ?></td>
+                <?php endif; ?>
+                <?php if($data_users_array['password']) : ?>
+                    <td><?= $data_users_array['password'] ?></td>
+                <?php endif; ?>
+                <?php if($data_users_array['email']) : ?>
+                    <td><?= $data_users_array['email'] ?></td>
+                <?php endif; ?>   
+                <td><a href="/hillel/admin/users/update?id=<?= $data_users_array['id'] ?>">Update</a></td>           
+                <td><a href="/hillel/admin/users/delete?id=<?= $data_users_array['id'] ?>">Delete</a></td>             
+            </tr>
+            <?php } ?>
+
+</table>
