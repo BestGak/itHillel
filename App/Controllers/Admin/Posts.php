@@ -19,6 +19,12 @@ class Posts extends Controller
     {
         $model = new PostsAdminModel();
         $this->data = ['data' => $model->get_post_by_id($_GET['id'])];
+
+        if(!empty($_POST))
+        {
+            $model->update(array_intersect_key(array_filter($_POST) , $model->to_array()));
+        }
+
         $this->admin_view('posts/posts-update');
     }
 
@@ -35,7 +41,8 @@ class Posts extends Controller
     public function delete()
     {
         $model = new PostsAdminModel();
-        $this->data = ['data' => $model->get_post_by_id($_GET['id'])];
-        $this->admin_view('posts/posts-delete');
+        $model->delete($_GET['id']);
+        // $this->data = ['data' => $model->get_post_by_id($_GET['id'])];
+        // $this->admin_view('posts/posts-delete');
     }
 }

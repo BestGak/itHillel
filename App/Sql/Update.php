@@ -11,7 +11,7 @@ class Delete
     private string $table_name;
     private Where $where;
     private PDO $connect;
-    
+    private array $data = [];
 
     public function __construct()
     {
@@ -36,12 +36,17 @@ class Delete
             throw new \Exception("Название таблицы, поля и значения должны быть заданы");
         }
 
-        return 'DELETE FROM ' . $this->table_name . $this -> where -> show_where();
+        return 'UPDATE FROM ' . $this->table_name . ' SET ' . $this->get_data() . $this -> where -> show_where();
     }
 
     public function execute()
     {
         $this->connect->query($this->build_sql());
+    }
+
+    public function set_data(array $values)
+    {
+        $this->data = $values;
     }
 
     public function and_where(array $condition): void
@@ -52,6 +57,16 @@ class Delete
     public function or_where(array $condition): void
     {
         $this->where->or_where($condition);
+    }
+
+    private function get_data(): string
+    {
+        $result = [];
+        foreach ($this->data as $field => $value) {
+            $result[] = $field.' = '. is_numeric($value) ? $value : $this->connect->quote($value);
+        }
+        return implode(',' , $result);
+
     }
 
 }

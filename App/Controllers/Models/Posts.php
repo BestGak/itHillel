@@ -3,10 +3,12 @@
 namespace App\Controllers\Models;
 
 use App\Sql\Insert;
+use App\Sql\Delete;
+use App\Sql\Update;
+
 
 class Posts
 {
-    // private array $posts = [];
     public int $id;
     public string $title;
     public string $content;
@@ -14,11 +16,12 @@ class Posts
     public int $category_id;
     public string $created;
     public string $updated;
-
+    public $posts = [ ['id' => 1, 'title' => 'Введение в PHP', 'content' => 'PHP — популярный скриптовый язык для веб-разработки.', 'category' => 'Программирование', 'category_id' => 201],
+    ['id' => 2, 'title' => 'Понимание массивов', 'content' => 'Массивы — это важная структура данных в программировании.', 'category' => 'Программирование', 'category_id' => 201]];
+    
     public function get_all_posts(): array
     {
-        return [ ['id' => 1, 'title' => 'Введение в PHP', 'content' => 'PHP — популярный скриптовый язык для веб-разработки.', 'category' => 'Программирование', 'category_id' => 201],
-        ['id' => 2, 'title' => 'Понимание массивов', 'content' => 'Массивы — это важная структура данных в программировании.', 'category' => 'Программирование', 'category_id' => 201]];
+        return $this->posts;
     }
 
     public function get_post_by_id(int $id): array
@@ -41,18 +44,29 @@ class Posts
         
     }
 
+    public function update(array $data)
+    {
+
+        $update = new Update();
+        $update->set_table_name('posts');
+        $update->set_data($data);
+        $update->execute();
+        
+    }
+
+    public function delete($id) 
+    {
+
+        $delete = new Delete();
+        $delete->set_table_name('posts');
+        $delete->and_where(['id', '=' , $id]);
+        $delete->execute();
+
+    }
+
     public function to_array()
     {
         return get_class_vars(get_class($this));
-        // return [
-        //     'id' => $this->id,
-        //     'title' => $this->title,
-        //     'content' => $this->content,
-        //     'author_id' => $this->author_id,
-        //     'category_id' => $this->category_id,
-        //     'created' => $this->created,
-        //     'updated' => $this->updated,
-        // ];
     }
 
 }
