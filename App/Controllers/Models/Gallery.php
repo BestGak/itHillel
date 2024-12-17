@@ -2,48 +2,50 @@
 
 namespace App\Controllers\Models;
 
+use App\Sql\Insert;
+
 class Gallery 
 {
+    public string $name;
+    public string $url;
+    public int $category_id;
     private array $images = [
         [
             'id' => 1,
             'name' => 'Sunset Beach',
-            'image_url' => 'sunset-beach.jpg',
-            'category' => 'Nature',
+            'url' => 'sunset-beach.jpg',
             'category_id' => 101,
         ],
         [
             'id' => 2,
             'name' => 'Mountain Peaks',
-            'image_url' => 'mountain-peaks.jpg',
+            'url' => 'mountain-peaks.jpg',
             'category' => 'Nature',
             'category_id' => 101,
         ],
         [
             'id' => 3,
             'name' => 'Urban Skyline',
-            'image_url' => 'urban-skyline.jpg',
-            'category' => 'City',
+            'url' => 'urban-skyline.jpg',
             'category_id' => 102,
         ],
         [
             'id' => 4,
             'name' => 'Ancient Ruins',
-            'image_url' => 'ancient-ruins.jpg',
-            'category' => 'History',
+            'url' => 'ancient-ruins.jpg',
             'category_id' => 103,
         ],
         [
             'id' => 5,
             'name' => 'Starry Night',
-            'image_url' => 'starry-night.jpg',
-            'category' => 'Astronomy',
+            'url' => 'starry-night.jpg',
             'category_id' => 104,
         ],
     ];
-     
+    
     public function get_all_images(): array 
     {
+ 
         return $this->images;
     }
 
@@ -57,5 +59,20 @@ class Gallery
     throw new \Exception('Картинка с указаным айди не найдена');
 }
 
+
+    public function save(array $data)
+    {
+
+        $insert = new Insert();
+        $insert->set_table_name('gallery');
+        $insert->set_fields_and_values($data);
+        $insert->execute();
+        
+    }
+
+    public function to_array()
+    {
+        return get_class_vars(get_class($this));
+    }
     
 }

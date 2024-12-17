@@ -1,10 +1,31 @@
 <h2>This is Admin Gallery page</h2>
-<ul>
-    <li>1</li>
-    <li>2</li>
-    <li>3</li>
-    <li>4</li>
-    <li>5</li>
-</ul>
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero mollitia voluptates debitis fuga error quae reiciendis nesciunt corporis, maiores accusamus libero sit vitae ab exercitationem nihil, repellat hic non animi.</p>
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque obcaecati blanditiis maiores illum voluptates, nostrum expedita? Voluptate, quis laudantium neque, quaerat sint perferendis voluptatum facere fugit praesentium nam odio velit!</p>
+<a href="/hillel/admin/gallery/create">Добавить Картинку</a>
+<table>
+    <tr>
+        <td>ID</td>
+        <td>Заголовок</td>
+        <td>Описание</td>
+        <td>Айди категории</td>
+    </tr>
+    <?php
+        foreach ($data as $data_gallery_array) 
+        { ?>
+            <tr>
+                <?php if($data_gallery_array['id']) : ?>
+                    <td><?= $data_gallery_array['id'] ?></td>
+                <?php endif; ?>
+                <?php if($data_gallery_array['name']) : ?>
+                    <td><?= $data_gallery_array['name'] ?></td>
+                <?php endif; ?>
+                <?php if($data_gallery_array['url']) : ?>
+                    <td><?= $data_gallery_array['url'] ?></td>
+                <?php endif; ?>
+                <?php if($data_gallery_array['category_id']) : ?>
+                    <td><?= $data_gallery_array['category_id'] ?></td>
+                <?php endif; ?>   
+                <td><a href="/hillel/admin/gallery/update?id=<?= $data_gallery_array['id'] ?>">Update</a></td>           
+                <td><a href="/hillel/admin/gallery/delete?id=<?= $data_gallery_array['id'] ?>">Delete</a></td>             
+            </tr>
+            <?php } ?>
+
+</table>

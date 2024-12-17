@@ -17,25 +17,5 @@ class Gallery extends Controller
       $this -> public_view('gallery/gallery-main');
     }
 
-    public function update() 
-    {
-      $model = new GalleryAdminModel();
-      $model -> get_all_images();
-      $this->data = ['data' => $model->get_image_by_id($_GET['id'])];
-      $this -> public_view('gallery/gallery-update');   
-    }
-
-    public function create():void 
-    {
-      $this -> public_view('gallery/gallery-create');   
-    }
-
-    public function delete():void  
-    {
-      $model = new GalleryAdminModel();
-      $model -> get_all_images();
-      $this->data = ['data' => $model->get_image_by_id($_GET['id'])];
-      $this -> public_view('gallery/gallery-delete');   
-    }
    
 }
