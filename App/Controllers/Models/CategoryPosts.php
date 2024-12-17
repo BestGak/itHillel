@@ -3,40 +3,24 @@
 namespace App\Controllers\Models;
 
 use App\Sql\Insert;
+use App\Sql\Select;
 
 class CategoryPosts 
 {
     public string $id;
     public string $name_category;
     
-    private array $posts = [
-        [
-            'id' => 1,
-            'name' => 'Sunset Beach', 
-        ],
-        [
-            'id' => 2,
-            'name' => 'Mountain Peaks',         
-        ],
-        [
-            'id' => 3,   
-            'name' => 'Funny Ship',               
-        ],
-        [
-            'id' => 4,
-            'name' => 'Ancient Ruins',
-          
-        ],
-        [
-            'id' => 5,
-            'name' => 'Starry Night',
-        ],
-    ];
-    
+    public function __construct()
+    {
+        $this->select = new Select();
+    }
+
     public function get_all_category_posts(): array 
     {
  
-        return $this->posts;
+        $this->select -> set_table_name('post_category');
+        $this->select -> set_fields(['id',' name_category']);
+        return $this->select-> execute();
     }
 
     public function get_category_image_by_id(int $ID): array

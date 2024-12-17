@@ -5,6 +5,7 @@ namespace App\Controllers\Models;
 use App\Sql\Insert;
 use App\Sql\Delete;
 use App\Sql\Update;
+use App\Sql\Select;
 
 
 class Posts
@@ -16,22 +17,35 @@ class Posts
     public int $category_id;
     public string $created;
     public string $updated;
-    public $posts = [ ['id' => 1, 'title' => 'Введение в PHP', 'content' => 'PHP — популярный скриптовый язык для веб-разработки.', 'category' => 'Программирование', 'category_id' => 201],
-    ['id' => 2, 'title' => 'Понимание массивов', 'content' => 'Массивы — это важная структура данных в программировании.', 'category' => 'Программирование', 'category_id' => 201]];
+    public Select $select;
+   
     
+    public function __construct()
+    {
+        $this->select = new Select();
+    }
+
     public function get_all_posts(): array
     {
-        return $this->posts;
+        $this->select -> set_table_name('posts p');
+        $this->select -> set_fields(['p.id',' p.title', 'p.content', 'pc.name_category', 'u.name']);
+        $this->select -> set_join([
+            'JOIN users u' => 'u.id = p.author_id',
+            'JOIN post_category pc' => 'pc.id = p.category_id'
+        ]);
+        return $this->select-> execute();
     }
 
     public function get_post_by_id(int $id): array
     {
-        foreach ($this->posts as $post) {
-            if ($post['id'] === $id) {
-                return $post;
-            }
-        }
-        throw new \Exception("Пост с ID {$id} не найден");
+        $this->select -> set_table_name('posts p');
+        $this->select -> set_fields(['p.id',' p.title', 'p.content', 'pc.name_category', 'u.name']);
+        $this->select -> set_join([
+            'JOIN users u' => 'u.id = p.author_id',
+            'JOIN post_category pc' => 'pc.id = p.category_id'
+        ]);
+        $this->select->and_where(['p.id', '=' , $id]);
+        return $this->select-> execute();
     }
 
     public function save(array $data)

@@ -11,11 +11,21 @@
     </tr>
     <tr>
         <td>Автор айди</td>
-        <td><input name="author_id" placeholder="int"></td>
+        <td>
+            <select name="author_id"> 
+                <?php foreach ($user as $row) :?>                  
+                    <option value="<?=$row['id'] ?>"><?=$row['name'] ?></option>                
+                <?php endforeach; ?>
+            </select>
+        </td>
     </tr>
     <tr>
         <td>Айди Категории</td>
-        <td><input name="category_id" placeholder="int"></td>
+        <td><select name="category_id"> 
+            <?php foreach ($category as $row) :?>                  
+                <option value="<?=$row['id'] ?>"><?=$row['name_category'] ?></option>                
+            <?php endforeach; ?>
+        </select></td>
     </tr>
     <tr>
         <td colspan=2><button type="submit">Добавить пост</button></td>

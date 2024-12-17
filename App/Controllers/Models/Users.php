@@ -3,36 +3,32 @@
 namespace App\Controllers\Models;
 
 use App\Sql\Insert;
+use App\Sql\Select;
 
 class Users
 {
     public string $name;
     public string $password;
     public int $email;
-    private array $users = [
-        [
-            'id' => 1,
-            'name' => 'Alice',
-            'password' => 'password123',
-            'email' => 'alice@example.com',
-        ],
-        [
-            'id' => 2,
-            'name' => 'Bob',
-            'password' => 'securePass456',
-            'email' => 'bob@example.com',
-        ],
-        [
-            'id' => 3,
-            'name' => 'Charlie',
-            'password' => 'charlie789!',
-            'email' => 'charlie@example.com',
-        ],
-    ];
+
+
+    public function __construct()
+    {
+        $this->select = new Select();
+    }
 
     public function get_all_users(): array
     {
-        return $this->users;
+        $this->select -> set_table_name('users');
+        $this->select -> set_fields(['id','name', 'email']);
+        return $this->select-> execute();
+    }
+
+    public function get_user_shorts()
+    {
+        $this->select -> set_table_name('users');
+        $this->select -> set_fields(['id','name']);
+        return $this->select-> execute();
     }
 
     public function get_post_by_id(int $id): array
