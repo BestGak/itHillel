@@ -3,10 +3,13 @@
 namespace App\Controllers;
 
 use App\Core\Viewer;
+use App\Controllers\Models\ModelInterface;
+
 
 class Controller
 {
 
+    protected ?ModelInterface $model = NULL;
     protected array $data = [];
     
     public function public_view(string $part_name = 'main')
@@ -26,5 +29,7 @@ class Controller
         $view -> include_admin_template($part_name);
 
     }
+
+    
 
 }

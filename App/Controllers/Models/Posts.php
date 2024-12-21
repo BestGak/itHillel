@@ -8,7 +8,7 @@ use App\Sql\Update;
 use App\Sql\Select;
 
 
-class Posts
+class Posts extends Model implements ModelInterface
 {
     public int $id;
     public string $title;
@@ -17,7 +17,7 @@ class Posts
     public int $category_id;
     public string $created;
     public string $updated;
-    public Select $select;
+    protected Select $select;
    
     
     public function __construct()
@@ -25,7 +25,7 @@ class Posts
         $this->select = new Select();
     }
 
-    public function get_all_posts(): array
+    public function get_all(): array
     {
         $this->select -> set_table_name('posts p');
         $this->select -> set_fields(['p.id',' p.title', 'p.content', 'pc.name_category', 'u.name']);

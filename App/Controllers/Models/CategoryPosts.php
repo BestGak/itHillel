@@ -5,13 +5,15 @@ namespace App\Controllers\Models;
 use App\Sql\Insert;
 use App\Sql\Select;
 
-class CategoryPosts 
+class CategoryPosts extends Model implements ModelInterface 
 {
     public string $id;
     public string $name_category;
-    
-    public function __construct()
+    protected string $table_name = 'post_category';
+
+    public function __construct($test)
     {
+        parent::__construct($test);
         $this->select = new Select();
     }
 

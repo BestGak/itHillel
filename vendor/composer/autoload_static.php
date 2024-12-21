@@ -21,10 +21,9 @@ class ComposerStaticInite6405dd01c23ce88e7c6d1db3670a0a9
     );
 
     public static $classMap = array (
-        'App\\Controller\\Models\\GaleryCategory' => __DIR__ . '/../..' . '/App/Controllers/Models/GalleryCategory.php',
-        'App\\Controller\\Models\\PostGallery' => __DIR__ . '/../..' . '/App/Controllers/Models/PostCategory.php',
-        'App\\Controller\\Models\\Users' => __DIR__ . '/../..' . '/App/Controllers/Models/User.php',
         'App\\Controllers\\About' => __DIR__ . '/../..' . '/App/Controllers/About.php',
+        'App\\Controllers\\Admin\\CategoryGallery' => __DIR__ . '/../..' . '/App/Controllers/Admin/CategoryGallery.php',
+        'App\\Controllers\\Admin\\CategoryPosts' => __DIR__ . '/../..' . '/App/Controllers/Admin/CategoryPosts.php',
         'App\\Controllers\\Admin\\Gallery' => __DIR__ . '/../..' . '/App/Controllers/Admin/Gallery.php',
         'App\\Controllers\\Admin\\Posts' => __DIR__ . '/../..' . '/App/Controllers/Admin/Posts.php',
         'App\\Controllers\\Admin\\Users' => __DIR__ . '/../..' . '/App/Controllers/Admin/Users.php',
@@ -32,12 +31,19 @@ class ComposerStaticInite6405dd01c23ce88e7c6d1db3670a0a9
         'App\\Controllers\\Error' => __DIR__ . '/../..' . '/App/Controllers/Error.php',
         'App\\Controllers\\Gallery' => __DIR__ . '/../..' . '/App/Controllers/Gallery.php',
         'App\\Controllers\\Main' => __DIR__ . '/../..' . '/App/Controllers/Main.php',
+        'App\\Controllers\\Models\\CategoryGallery' => __DIR__ . '/../..' . '/App/Controllers/Models/CategoryGallery.php',
+        'App\\Controllers\\Models\\CategoryPosts' => __DIR__ . '/../..' . '/App/Controllers/Models/CategoryPosts.php',
         'App\\Controllers\\Models\\Gallery' => __DIR__ . '/../..' . '/App/Controllers/Models/Gallery.php',
+        'App\\Controllers\\Models\\ModelInterface' => __DIR__ . '/../..' . '/App/Controllers/Models/ModelInterface.php',
         'App\\Controllers\\Models\\Posts' => __DIR__ . '/../..' . '/App/Controllers/Models/Posts.php',
+        'App\\Controllers\\Models\\Users' => __DIR__ . '/../..' . '/App/Controllers/Models/Users.php',
         'App\\Core\\Router' => __DIR__ . '/../..' . '/App/Core/Router.php',
         'App\\Core\\Viewer' => __DIR__ . '/../..' . '/App/Core/Viewer.php',
         'App\\Sql\\Connector' => __DIR__ . '/../..' . '/App/Sql/Connector.php',
+        'App\\Sql\\Delete' => __DIR__ . '/../..' . '/App/Sql/Delete.php',
         'App\\Sql\\Insert' => __DIR__ . '/../..' . '/App/Sql/Insert.php',
+        'App\\Sql\\Select' => __DIR__ . '/../..' . '/App/Sql/Select.php',
+        'App\\Sql\\Where' => __DIR__ . '/../..' . '/App/Sql/Where.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

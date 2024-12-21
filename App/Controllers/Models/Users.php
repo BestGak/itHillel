@@ -5,7 +5,7 @@ namespace App\Controllers\Models;
 use App\Sql\Insert;
 use App\Sql\Select;
 
-class Users
+class Users implements ModelInterface
 {
     public string $name;
     public string $password;

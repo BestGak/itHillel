@@ -6,10 +6,9 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'App\\Controller\\Models\\GaleryCategory' => $baseDir . '/App/Controllers/Models/GalleryCategory.php',
-    'App\\Controller\\Models\\PostGallery' => $baseDir . '/App/Controllers/Models/PostCategory.php',
-    'App\\Controller\\Models\\Users' => $baseDir . '/App/Controllers/Models/User.php',
     'App\\Controllers\\About' => $baseDir . '/App/Controllers/About.php',
+    'App\\Controllers\\Admin\\CategoryGallery' => $baseDir . '/App/Controllers/Admin/CategoryGallery.php',
+    'App\\Controllers\\Admin\\CategoryPosts' => $baseDir . '/App/Controllers/Admin/CategoryPosts.php',
     'App\\Controllers\\Admin\\Gallery' => $baseDir . '/App/Controllers/Admin/Gallery.php',
     'App\\Controllers\\Admin\\Posts' => $baseDir . '/App/Controllers/Admin/Posts.php',
     'App\\Controllers\\Admin\\Users' => $baseDir . '/App/Controllers/Admin/Users.php',
@@ -17,10 +16,17 @@ return array(
     'App\\Controllers\\Error' => $baseDir . '/App/Controllers/Error.php',
     'App\\Controllers\\Gallery' => $baseDir . '/App/Controllers/Gallery.php',
     'App\\Controllers\\Main' => $baseDir . '/App/Controllers/Main.php',
+    'App\\Controllers\\Models\\CategoryGallery' => $baseDir . '/App/Controllers/Models/CategoryGallery.php',
+    'App\\Controllers\\Models\\CategoryPosts' => $baseDir . '/App/Controllers/Models/CategoryPosts.php',
     'App\\Controllers\\Models\\Gallery' => $baseDir . '/App/Controllers/Models/Gallery.php',
+    'App\\Controllers\\Models\\ModelInterface' => $baseDir . '/App/Controllers/Models/ModelInterface.php',
     'App\\Controllers\\Models\\Posts' => $baseDir . '/App/Controllers/Models/Posts.php',
+    'App\\Controllers\\Models\\Users' => $baseDir . '/App/Controllers/Models/Users.php',
     'App\\Core\\Router' => $baseDir . '/App/Core/Router.php',
     'App\\Core\\Viewer' => $baseDir . '/App/Core/Viewer.php',
     'App\\Sql\\Connector' => $baseDir . '/App/Sql/Connector.php',
+    'App\\Sql\\Delete' => $baseDir . '/App/Sql/Delete.php',
     'App\\Sql\\Insert' => $baseDir . '/App/Sql/Insert.php',
+    'App\\Sql\\Select' => $baseDir . '/App/Sql/Select.php',
+    'App\\Sql\\Where' => $baseDir . '/App/Sql/Where.php',
 );

@@ -4,7 +4,7 @@ namespace App\Controllers\Models;
 
 use App\Sql\Insert;
 
-class CategoryGallery 
+class CategoryGallery implements ModelInterface
 {
     public string $name;
     public string $id;

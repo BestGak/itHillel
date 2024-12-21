@@ -12,8 +12,8 @@
                 <?php if($data_posts_array['id']) : ?>
                     <td><?= $data_posts_array['id'] ?></td>
                 <?php endif; ?>
-                <?php if($data_posts_array['name']) : ?>
-                    <td><?= $data_posts_array['name'] ?></td>
+                <?php if($data_posts_array['name_category']) : ?>
+                    <td><?= $data_posts_array['name_category'] ?></td>
                 <?php endif; ?>
                 <td><a href="/hillel/admin/categoryposts/update?id=<?= $data_posts_array['id'] ?>">Update</a></td>           
                 <td><a href="/hillel/admin/categoryposts/delete?id=<?= $data_posts_array['id'] ?>">Delete</a></td>             

@@ -11,10 +11,11 @@ use App\Controllers\Models\Users;
 
 class Posts extends Controller
 {
+
     public function view()
     {
         $model = new PostsAdminModel();
-        $this->data = ['data' => $model->get_all_posts()];
+        $this->data = ['data' => $model->get_all()];
         $this->admin_view('posts/posts-main');
     }
 

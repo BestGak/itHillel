@@ -1,4 +1,7 @@
 <style>
+    * {
+        font-family: monospace;
+    }
     table {
         border: 1px solid aqua;
         padding: 12px;

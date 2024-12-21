@@ -4,7 +4,7 @@ namespace App\Controllers\Models;
 
 use App\Sql\Insert;
 
-class Gallery 
+class Gallery implements ModelInterface
 {
     public string $name;
     public string $url;
